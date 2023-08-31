@@ -139,6 +139,24 @@ function closeModal() {
 
 
 
+
+// Message de confirmation suite à un formulaire bien rempli
+
+let newElement = document.createElement("div")
+let parentOfNewElement = document.querySelector(".bground")
+parentOfNewElement.appendChild(newElement)
+newElement = "modalBgr"
+
+let spanPhrase = document.createElement("span")
+newElement.appendChild(spanPhrase)
+
+function modalConfirmation () {
+  newElement.style.display = "block"
+  spanPhrase.innerHTML ="Merci pour votre inscription"
+}
+
+
+
 // Si formulaire valide, alors afficher le bloc de confirmation
 
 
@@ -154,22 +172,12 @@ function formulaireValidator() {
   }
 }
 
+modalBtn.addEventListener ("click", modalConfirmation) 
+  
 
 
-    // Message de confirmation suite à un formulaire bien rempli
 
-let newElement = document.createElement("div")
-let parentOfNewElement = document.querySelector(".bground")
-parentOfNewElement.appendChild(newElement)
-newElement = "modalBgr"
-
-let spanPhrase = document.createElement("span")
-newElement.appendChild(spanPhrase)
-
-function modalConfirmation () {
-  newElement.style.display = "block"
-  spanPhrase.innerHTML ="Merci pour votre inscription"
-}
+    
 
 
 
