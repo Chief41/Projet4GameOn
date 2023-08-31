@@ -127,6 +127,19 @@ function closeModal() {
     }
   }
 
+  function cityValidator() {
+    const allCity = document.querySelectorAll('input[name = "location"]');
+    isValid = false;
+    for ( let i = 0; i < allCity.length; i++) {
+      if (allCity[i].checked) {
+        document.getElementById("locationError").textContent = ""
+      }else {
+        document.getElementById("quantityError").textContent =
+        "Veuillez entrer une ville valide.";
+        document.getElementById("quantityError").style.color = "red";
+      }
+    }
+  }
   function formulaireValidator() {
 
     firstNameValidator() 
