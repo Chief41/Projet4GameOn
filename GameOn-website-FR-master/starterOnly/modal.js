@@ -63,6 +63,7 @@ function closeModal() {
     ) {
       document.getElementById("firstError").textContent =
         "Veuillez entrer un prénom valide.";
+        document.getElementById("firstError").style.color = "red";
       return false;
     } else {
       document.getElementById("firstError").textContent = "";
@@ -79,6 +80,7 @@ function closeModal() {
     ) {
       document.getElementById("lastError").textContent =
         "Veuillez entrer un nom de famille valide.";
+        document.getElementById("lastError").style.color = "red";
       return false;
     } else {
       document.getElementById("lastError").textContent = "";
@@ -91,6 +93,7 @@ function closeModal() {
     if (email.value.trim() === "" || !email.value.match(emailReg)) {
       document.getElementById("emailError").textContent =
         "Veuillez entrer une adresse e-mail valide.";
+        document.getElementById("emailError").style.color = "red";
       return false;
     } else {
       document.getElementById("emailError").textContent = "";
@@ -103,6 +106,7 @@ function closeModal() {
     if (birthday.value.trim() === "" || birthday.value.length !== 10) {
       document.getElementById("birthdateError").textContent =
         "Veuillez entrer une date de naissance valide (format YYYY-MM-DD).";
+        document.getElementById("birthdateError").style.color = "red";
       return false;
     } else {
       document.getElementById("birthdateError").textContent = "";
@@ -115,6 +119,7 @@ function closeModal() {
     if (quantity.value.trim() === "" || quantity.value < 1) {
       document.getElementById("quantityError").textContent =
         "Veuillez entrer une quantité valide.";
+        document.getElementById("quantityError").style.color = "red";
       return false;
     } else {
       document.getElementById("quantityError").textContent = "";
@@ -131,4 +136,41 @@ function closeModal() {
     quantityValidator()
   
 }
+
+
+
+// Si formulaire valide, alors afficher le bloc de confirmation
+
+
+function formulaireValidator() {
+  const isFirstNameValid = firstNameValidator();
+  const isLastNameValid = lastNameValidator();
+  const isEmailValid = emailValidator();
+  const isBirthValid = birthValidator();
+  const isQuantityValid = quantityValidator();
+
+  if (isFirstNameValid && isLastNameValid && isEmailValid && isBirthValid && isQuantityValid) {
+    modalConfirmation();
+  }
+}
+
+
+
+    // Message de confirmation suite à un formulaire bien rempli
+
+let newElement = document.createElement("div")
+let parentOfNewElement = document.querySelector(".bground")
+parentOfNewElement.appendChild(newElement)
+newElement = "modalBgr"
+
+let spanPhrase = document.createElement("span")
+newElement.appendChild(spanPhrase)
+
+function modalConfirmation () {
+  newElement.style.display = "block"
+  spanPhrase.innerHTML ="Merci pour votre inscription"
+}
+
+
+
 
