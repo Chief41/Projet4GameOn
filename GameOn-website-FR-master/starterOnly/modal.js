@@ -2,7 +2,7 @@
 
 // DOM Elements
 const modalbg = document.querySelector(".bground");
-const modalBtn = document.querySelectorAll(".modal-btn");
+const modalBtn = document.querySelector(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const closeCross = document.querySelectorAll('.close')
 const firstName = document.getElementById("first");
@@ -27,7 +27,7 @@ function editNav() {
 }
 
 // launch modal event
-modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+modalBtn.addEventListener("click", launchModal);
 
 
 // launch modal form
@@ -127,19 +127,46 @@ function closeModal() {
     }
   }
 
-  function cityValidator() {
-    const allCity = document.querySelectorAll('input[name = "location"]');
-    isValid = false;
-    for ( let i = 0; i < allCity.length; i++) {
-      if (allCity[i].checked) {
-        document.getElementById("locationError").textContent = ""
-      }else {
-        document.getElementById("quantityError").textContent =
-        "Veuillez entrer une ville valide.";
-        document.getElementById("quantityError").style.color = "red";
-      }
+  // Validation de la ville
+function cityValidator() {
+  const cityInputs = document.querySelectorAll('input[name = "location"]');
+  let isValid = false;
+  console.log(cityInputs)
+  for (let i = 0; i < cityInputs.length; i++) {
+    cityInputs[i].addEventListener("click",() => {
+    console.log("click")
+    })
+    if (cityInputs[i].checked) {
+      isValid = true;
+      break; // Sortir de la boucle dès qu'une ville est cochée
     }
   }
+
+  if (!isValid) {
+    document.getElementById("locationError").textContent =
+      "Veuillez sélectionner une ville.";
+    document.getElementById("locationError").style.color = "red";
+  } else {
+    document.getElementById("locationError").textContent = "";
+  }
+
+  return isValid;
+
+}
+
+// Acceptation check
+
+function checkForm() {
+  if (checkbox1.checked === false) {
+    document.getElementById("checkError").textContent = 
+    "veuillez sélectionner une champ"
+    document.getElementById("locationError").style.color = "red";
+  }else {
+    document.getElementById("locationError").textContent = "";
+  }
+}
+
+
   function formulaireValidator() {
 
     firstNameValidator() 
@@ -147,6 +174,7 @@ function closeModal() {
     emailValidator() 
     birthValidator() 
     quantityValidator()
+    cityValidator()
   
 }
 
@@ -158,7 +186,7 @@ function closeModal() {
 let newElement = document.createElement("div")
 let parentOfNewElement = document.querySelector(".bground")
 parentOfNewElement.appendChild(newElement)
-newElement = "modalBgr"
+// newElement = "modalBgr"
 
 let spanPhrase = document.createElement("span")
 newElement.appendChild(spanPhrase)
@@ -179,8 +207,8 @@ function formulaireValidator() {
   const isEmailValid = emailValidator();
   const isBirthValid = birthValidator();
   const isQuantityValid = quantityValidator();
-
-  if (isFirstNameValid && isLastNameValid && isEmailValid && isBirthValid && isQuantityValid) {
+  const isCityValid = cityValidator()
+  if (isFirstNameValid && isLastNameValid && isEmailValid && isBirthValid && isQuantityValid && isCityValid) {
     modalConfirmation();
   }
 }
