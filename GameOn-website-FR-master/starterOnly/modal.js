@@ -12,6 +12,7 @@ const birthday = document.getElementById("birthdate");
 const quantity = document.getElementById("quantity");
 const cityLocation = document.querySelectorAll(".radio input");
 const checkbox1 = document.getElementById("checkbox1");
+const checkbox2 = document.getElementById("checkbox2")
 const regex = /^[a-zA-ZÀ-ÖØ-öø-ÿ]+$/;
 const emailReg = new RegExp(
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/i
@@ -129,16 +130,13 @@ function closeModal() {
 
   // Validation de la ville
 function cityValidator() {
-  const cityInputs = document.querySelectorAll('input[name = "location"]');
-  let isValid = false;
-  console.log(cityInputs)
+  const cityInputs = document.querySelectorAll('input[name="location"]');
+  let isValid = false; // Initialisation à false
+
   for (let i = 0; i < cityInputs.length; i++) {
-    cityInputs[i].addEventListener("click",() => {
-    console.log("click")
-    })
     if (cityInputs[i].checked) {
-      isValid = true;
-      break; // Sortir de la boucle dès qu'une ville est cochée
+      isValid = true; // Si une ville est cochée, isValid devient true
+      break;
     }
   }
 
@@ -150,20 +148,22 @@ function cityValidator() {
     document.getElementById("locationError").textContent = "";
   }
 
-  return isValid;
-
+  return isValid; // Renvoie la valeur isValid
 }
 
 // Acceptation check
-
 function checkForm() {
-  if (checkbox1.checked === false) {
-    document.getElementById("checkError").textContent = 
-    "veuillez sélectionner une champ"
-    document.getElementById("locationError").style.color = "red";
-  }else {
-    document.getElementById("locationError").textContent = "";
+  const isValid = checkbox1.checked; // Initialise isValid avec la valeur de checkbox1.checked
+
+  if (!isValid) {
+    document.getElementById("checkError").textContent =
+      "Veuillez accepter les conditions d'utilisation.";
+    document.getElementById("checkError").style.color = "red";
+  } else {
+    document.getElementById("checkError").textContent = "";
   }
+
+  return isValid; // Renvoie la valeur isValid
 }
 
 
@@ -175,10 +175,17 @@ function checkForm() {
     birthValidator() 
     quantityValidator()
     cityValidator()
+    checkForm()
   
 }
 
 
+
+const form = document.forms.reserve; // Sélectionne le formulaire par son nom
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+  formulaireValidator();
+});
 
 
 // Message de confirmation suite à un formulaire bien rempli
@@ -200,7 +207,6 @@ function modalConfirmation () {
 
 // Si formulaire valide, alors afficher le bloc de confirmation
 
-
 function formulaireValidator() {
   const isFirstNameValid = firstNameValidator();
   const isLastNameValid = lastNameValidator();
@@ -208,12 +214,15 @@ function formulaireValidator() {
   const isBirthValid = birthValidator();
   const isQuantityValid = quantityValidator();
   const isCityValid = cityValidator()
-  if (isFirstNameValid && isLastNameValid && isEmailValid && isBirthValid && isQuantityValid && isCityValid) {
+  const isCheckValid = checkForm();
+  if (isFirstNameValid && isLastNameValid && isEmailValid && isBirthValid && isQuantityValid && isCityValid &&  isCheckValid) {
     modalConfirmation();
   }
 }
+ 
 
-modalBtn.addEventListener ("click", modalConfirmation) 
+
+
   
 
 
