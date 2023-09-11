@@ -13,6 +13,7 @@ const quantity = document.getElementById("quantity");
 const cityLocation = document.querySelectorAll(".radio input");
 const checkbox1 = document.getElementById("checkbox1");
 const checkbox2 = document.getElementById("checkbox2")
+const formular = document.getElementById("formular")
 const regex = /^[a-zA-ZÀ-ÖØ-öø-ÿ]+$/;
 const emailReg = new RegExp(
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/i
@@ -167,6 +168,8 @@ function checkForm() {
 }
 
 
+
+//Fonction permettant d'englober les fonctions de chaques champs de formulaires afin de les tester par la suite
   function formulaireValidator() {
 
     firstNameValidator() 
@@ -180,7 +183,7 @@ function checkForm() {
 }
 
 
-
+//Cette evenement permet au formulaire de ne pas être soumit par défaut
 const form = document.forms.reserve; // Sélectionne le formulaire par son nom
 form.addEventListener("submit", function (e) {
   e.preventDefault();
@@ -188,24 +191,42 @@ form.addEventListener("submit", function (e) {
 });
 
 
-// Message de confirmation suite à un formulaire bien rempli
 
-let newElement = document.createElement("div")
-let parentOfNewElement = document.querySelector(".bground")
-parentOfNewElement.appendChild(newElement)
-// newElement = "modalBgr"
+// créer un span dans le html afin d'afficher un message de confirmation
 
-let spanPhrase = document.createElement("span")
-newElement.appendChild(spanPhrase)
 
-function modalConfirmation () {
-  newElement.style.display = "block"
-  spanPhrase.innerHTML ="Merci pour votre inscription"
+
+
+// fonction pour afficher le message de confirmation en lui donnant du style
+function validate() {
+  formular.style.display = "none"
+  let parentOfNewElement = document.querySelector(".content")
+  let elementchild = document.querySelector(".modal-body")
+  let spanPhrase = document.createElement("span")
+  let closeButton = document.createElement("button");
+  closeButton.textContent = "Fermer"
+  parentOfNewElement.appendChild(elementchild)
+  elementchild.appendChild(spanPhrase)
+  elementchild.appendChild(closeButton)
+  parentOfNewElement.style.height = "35rem"
+  spanPhrase.style.color = "white"; // Texte blanc ou autre couleur de texte
+  spanPhrase.innerHTML = "Merci pour <br/> votre inscription";
+  spanPhrase.style.position = "absolute";
+  spanPhrase.style.left = "50%";
+  spanPhrase.style.transform = "translateX(-50%)";
+  spanPhrase.style.top = "50%";
+  spanPhrase.style.transform += "translateY(-50%)";
+
+  closeButton.addEventListener("click", function() {
+    parentOfNewElement.removeChild(parentOfNewElement);
+  });
 }
 
 
 
-// Si formulaire valide, alors afficher le bloc de confirmation
+
+
+// Fonction pour valider le formulaire et si formulaire valide afficher le message de confirmation
 
 function formulaireValidator() {
   const isFirstNameValid = firstNameValidator();
@@ -215,8 +236,10 @@ function formulaireValidator() {
   const isQuantityValid = quantityValidator();
   const isCityValid = cityValidator()
   const isCheckValid = checkForm();
+
+  //condition verifiant si tous nos champs sont valides
   if (isFirstNameValid && isLastNameValid && isEmailValid && isBirthValid && isQuantityValid && isCityValid &&  isCheckValid) {
-    modalConfirmation();
+    validate();
   }
 }
  
