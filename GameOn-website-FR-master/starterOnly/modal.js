@@ -198,30 +198,62 @@ form.addEventListener("submit", function (e) {
 
 
 // fonction pour afficher le message de confirmation en lui donnant du style
+
 function validate() {
-  formular.style.display = "none"
-  let parentOfNewElement = document.querySelector(".content")
-  let elementchild = document.querySelector(".modal-body")
-  let spanPhrase = document.createElement("span")
+  formular.style.display = "none";
+  let parentOfNewElement = document.querySelector(".content");
+  let elementchild = document.querySelector(".modal-body");
+
+  // Créer une div pour englober le bouton
+  let buttonDiv = document.createElement("div");
+
+  let spanPhrase = document.createElement("span");
   let closeButton = document.createElement("button");
-  closeButton.textContent = "Fermer"
-  parentOfNewElement.appendChild(elementchild)
+  closeButton.textContent = "Fermer";
+
+  // Ajouter le contenu centré au parent
+  parentOfNewElement.appendChild(elementchild);
   elementchild.appendChild(spanPhrase)
-  elementchild.appendChild(closeButton)
-  parentOfNewElement.style.height = "35rem"
+  elementchild.appendChild(buttonDiv)
+  buttonDiv.appendChild(spanPhrase)
+
+
+  // Ajouter la div englobante du bouton au contenu centré
+  parentOfNewElement.display = "flex"
+  parentOfNewElement.flex = "wrap"
+
+  // Ajouter le bouton à la div englobante du bouton
+  buttonDiv.appendChild(closeButton);
+
+  parentOfNewElement.style.height = "45rem";
   spanPhrase.style.color = "white"; // Texte blanc ou autre couleur de texte
   spanPhrase.innerHTML = "Merci pour <br/> votre inscription";
+
+  // Centrer horizontalement la phrase et la div englobante du bouton
+  spanPhrase.style.textAlign = "center";
   spanPhrase.style.position = "absolute";
   spanPhrase.style.left = "50%";
   spanPhrase.style.transform = "translateX(-50%)";
-  spanPhrase.style.top = "50%";
-  spanPhrase.style.transform += "translateY(-50%)";
+  spanPhrase.style.top = "40%";
+
+
+  closeButton.style.position = "absolute"
+  closeButton.style.left = "9pc"
+  closeButton.style.top = "40pc"
+  closeButton.style.background = "red"
+  closeButton.style.borderRadius = "7px"
+  closeButton.style.padding = "12px 82px"
+  closeButton.style.color = "white"
+  closeButton.style.border = 0
+  closeButton.style.cursor = "pointer"
+
 
   closeButton.addEventListener("click", function() {
-    parentOfNewElement.removeChild(parentOfNewElement);
+    // Supprimer le parentOfNewElement
+    parentOfNewElement.remove();
+    formular.style.display = "block"; // Afficher à nouveau le formulaire si nécessaire
   });
 }
-
 
 
 
