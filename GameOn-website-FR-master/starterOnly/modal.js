@@ -46,6 +46,8 @@ function closeModal() {
 }
 
 
+
+
 // Validation du formulaire avec message sous chaques champs en cas d'erreurs
 
    // Validation du formulaire au moment de la soumission
@@ -57,6 +59,7 @@ function closeModal() {
    });
 
     // Validation du prénom
+
   function firstNameValidator() {
     if (
       firstName.value.trim() === "" ||
@@ -66,6 +69,7 @@ function closeModal() {
       document.getElementById("firstError").textContent =
         "Veuillez entrer un prénom valide.";
         document.getElementById("firstError").style.color = "red";
+        document.getElementById("first").style.borderColor = "red"
       return false;
     } else {
       document.getElementById("firstError").textContent = "";
@@ -83,6 +87,7 @@ function closeModal() {
       document.getElementById("lastError").textContent =
         "Veuillez entrer un nom de famille valide.";
         document.getElementById("lastError").style.color = "red";
+        document.getElementById("last").style.borderColor = "red"
       return false;
     } else {
       document.getElementById("lastError").textContent = "";
@@ -96,6 +101,7 @@ function closeModal() {
       document.getElementById("emailError").textContent =
         "Veuillez entrer une adresse e-mail valide.";
         document.getElementById("emailError").style.color = "red";
+        document.getElementById("email").style.borderColor = "red"
       return false;
     } else {
       document.getElementById("emailError").textContent = "";
@@ -109,6 +115,7 @@ function closeModal() {
       document.getElementById("birthdateError").textContent =
         "Veuillez entrer une date de naissance valide (format YYYY-MM-DD).";
         document.getElementById("birthdateError").style.color = "red";
+        document.getElementById("birthdate").style.borderColor = "red"
       return false;
     } else {
       document.getElementById("birthdateError").textContent = "";
@@ -122,6 +129,7 @@ function closeModal() {
       document.getElementById("quantityError").textContent =
         "Veuillez entrer une quantité valide.";
         document.getElementById("quantityError").style.color = "red";
+        document.getElementById("quantity").style.borderColor = "red"
       return false;
     } else {
       document.getElementById("quantityError").textContent = "";
@@ -152,6 +160,7 @@ function cityValidator() {
   return isValid; // Renvoie la valeur isValid
 }
 
+
 // Acceptation check
 function checkForm() {
   const isValid = checkbox1.checked; // Initialise isValid avec la valeur de checkbox1.checked
@@ -169,6 +178,8 @@ function checkForm() {
 
 
 
+
+
 //Fonction permettant d'englober les fonctions de chaques champs de formulaires afin de les tester par la suite
   function formulaireValidator() {
 
@@ -183,6 +194,8 @@ function checkForm() {
 }
 
 
+
+
 //Cette evenement permet au formulaire de ne pas être soumit par défaut
 const form = document.forms.reserve; // Sélectionne le formulaire par son nom
 form.addEventListener("submit", function (e) {
@@ -192,7 +205,6 @@ form.addEventListener("submit", function (e) {
 
 
 
-// créer un span dans le html afin d'afficher un message de confirmation
 
 
 
@@ -252,6 +264,8 @@ function validate() {
     // Supprimer le parentOfNewElement
     parentOfNewElement.remove();
     formular.style.display = "block"; // Afficher à nouveau le formulaire si nécessaire
+    // Rediriger l'utilisateur vers une autre page de votre site web
+    window.location.href = "http://127.0.0.1:5500/GameOn-website-FR-master/starterOnly/index.html"
   });
 }
 
