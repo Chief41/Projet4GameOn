@@ -47,15 +47,12 @@ function closeModal() {
 }
 
 
-//const btnInscription = document.querySelector(".btn-signup")
+const signupBtn = document.querySelector('.hero-section > .btn-signup')
 
-modalBtn.addEventListener("click", launchMedia);
+signupBtn.addEventListener("click", () => {
 
-function launchMedia() {
   modalbg.style.display = "block";
-}
-
-
+})
 
 
 

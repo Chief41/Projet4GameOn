@@ -32,7 +32,8 @@ img {
 
 .topnav {
   overflow: hidden;
-  margin: 3.5%;
+  margin: 11.5px;
+  z-index: 2;
 }
 .header-logo {
     float: left;
@@ -162,11 +163,10 @@ main {
   position: fixed;
   z-index: 1;
   left: 0;
-  top: 0;
+  top: 30px;
   height: 100%;
   width: 100%;
   overflow: auto;
-  background-color: rgba(26, 39, 156, 0.4);
 }
 
 .content {
