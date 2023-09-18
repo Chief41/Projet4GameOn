@@ -28,6 +28,7 @@ function editNav() {
   }
 }
 
+
 // launch modal event
 modalBtn.addEventListener("click", launchModal);
 
@@ -46,12 +47,24 @@ function closeModal() {
 }
 
 
+//const btnInscription = document.querySelector(".btn-signup")
+
+modalBtn.addEventListener("click", launchMedia);
+
+function launchMedia() {
+  modalbg.style.display = "block";
+}
+
+
+
+
+
 
 
 // Validation du formulaire avec message sous chaques champs en cas d'erreurs
 
    // Validation du formulaire au moment de la soumission
-   const buttonForm = document.querySelector(".btn-submit")
+   const buttonForm = document.querySelector(".hero-section > .btn-signup")
 
    buttonForm.addEventListener("click", function (e) {
     e.preventDefault();
