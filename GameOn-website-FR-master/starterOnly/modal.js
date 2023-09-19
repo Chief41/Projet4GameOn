@@ -58,10 +58,12 @@ signupBtn.addEventListener("click", () => {
 
 
 
+
+
 // Validation du formulaire avec message sous chaques champs en cas d'erreurs
 
    // Validation du formulaire au moment de la soumission
-   const buttonForm = document.querySelector(".hero-section > .btn-signup")
+   const buttonForm = document.querySelector(".btn-submit")
 
    buttonForm.addEventListener("click", function (e) {
     e.preventDefault();
